@@ -15,9 +15,7 @@ app.get('/api/jobs', async (req, res ) => {
 
     try {   
         const serpAPIURL = `https://serpapi.com/search.json?engine=google_jobs&q=${query}&api_key=${process.env.SERP_API_KEY}`;
-        console.log('serpAPIURL', serpAPIURL);
         const response = await axios.get(serpAPIURL);
-        console.log('response:', JSON.stringify((response.data.jobs_results)));
         res.json(response.data.jobs_results || []);
     } catch (error) {
       res.status(500).json({ error: error.message})
